@@ -72,6 +72,9 @@ class Unit(PrettyIPython, SharedRegistryObject):
     def __repr__(self):
         return "<Unit('{}')>".format(self._units)
 
+    def _repr_pretty_(self, p, cycle):
+        p.text(str(self) if not cycle else '...')
+
     def __format__(self, spec):
         spec = spec or self.default_format
         # special cases
